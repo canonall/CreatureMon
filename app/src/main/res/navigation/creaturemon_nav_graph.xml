@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/creaturemon_nav_graph"
+    app:startDestination="@id/creatureListFragment">
+
+    <fragment
+        android:id="@+id/creatureListFragment"
+        android:name="com.canonal.creaturemon.ui.creature.CreatureListFragment"
+        android:label="CreatureListFragment"
+        tools:layout="@layout/fragment_creature_list" />
+    <fragment
+        android:id="@+id/addCreatureFragment"
+        android:name="com.canonal.creaturemon.ui.creature.AddCreatureFragment"
+        android:label="AddCreatureFragment"
+        tools:layout="@layout/fragment_add_creature" />
+</navigation>
