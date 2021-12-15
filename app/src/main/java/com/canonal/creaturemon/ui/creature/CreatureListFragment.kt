@@ -24,6 +24,5 @@ class CreatureListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }
-
-
 }
+

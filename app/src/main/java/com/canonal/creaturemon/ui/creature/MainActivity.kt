@@ -14,6 +14,7 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.ActivityMainBinding
+import com.canonal.creaturemon.model.CreatureGenerator
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         )
         setToolBar()
         setupActionBar(navController, appBarConfiguration)
+
     }
 
 
