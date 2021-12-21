@@ -1,6 +1,5 @@
 package com.canonal.creaturemon.data.local.typeConverter
 
-import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.canonal.creaturemon.model.CreatureAttribute
 import java.util.*

@@ -6,15 +6,15 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.creature.CreatureListFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="CREATURE LIST FRAGMENT" />
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvCreatureList"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
 
-    </FrameLayout>
+    </RelativeLayout>
 </layout>

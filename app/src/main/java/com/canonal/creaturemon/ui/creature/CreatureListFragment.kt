@@ -1,13 +1,17 @@
 package com.canonal.creaturemon.ui.creature
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.ui.AppBarConfiguration
-import com.canonal.creaturemon.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.canonal.creaturemon.databinding.FragmentCreatureListBinding
+import com.canonal.creaturemon.di.AppModule
+import com.canonal.creaturemon.ui.adapter.CreatureAdapter
+import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
+import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
 class CreatureListFragment : Fragment() {
 
@@ -22,7 +26,15 @@ class CreatureListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val creatureViewModel: CreatureViewModel by viewModels {
+            CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
+        }
+        creatureViewModel.creatureList.observe(viewLifecycleOwner, {
+            val creatureAdapter = CreatureAdapter(it)
+            creatureListBinding.rvCreatureList.adapter = creatureAdapter
+            creatureListBinding.rvCreatureList.layoutManager = LinearLayoutManager(view.context)
+            creatureListBinding.rvCreatureList.setHasFixedSize(true)
+        })
     }
 }
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+<variable
+    name="creature"
+    type="com.canonal.creaturemon.model.Creature" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvCreatureName"
+            android:layout_width="match_parent"
+            android:text="@{creature.name}"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvCreatureIntelligence"
+            android:layout_below="@+id/tvCreatureName"
+            android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvCreatureStrength"
+            android:layout_below="@id/tvCreatureIntelligence"
+            android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvCreatureEndurance"
+            android:layout_below="@id/tvCreatureStrength"
+            android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</layout>
+

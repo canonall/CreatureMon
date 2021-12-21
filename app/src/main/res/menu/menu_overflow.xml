@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/clearAll"
-        android:title="@string/clear_all" />
+        android:id="@+id/creatureListFragment"
+        android:title="@string/clear_all_creatures" />
 
     <item
         android:id="@+id/addCreatureFragment"

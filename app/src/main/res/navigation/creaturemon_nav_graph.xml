@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/creatureListFragment"
         android:name="com.canonal.creaturemon.ui.creature.CreatureListFragment"
-        android:label="CreatureListFragment"
+        android:label="@string/creatures"
         tools:layout="@layout/fragment_creature_list" />
     <fragment
         android:id="@+id/addCreatureFragment"
         android:name="com.canonal.creaturemon.ui.creature.AddCreatureFragment"
-        android:label="AddCreatureFragment"
+        android:label="@string/new_creature"
         tools:layout="@layout/fragment_add_creature" />
 </navigation>

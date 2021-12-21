@@ -3,6 +3,7 @@ package com.canonal.creaturemon.ui.creature
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -14,12 +15,17 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.ActivityMainBinding
-import com.canonal.creaturemon.model.CreatureGenerator
+import com.canonal.creaturemon.di.AppModule
+import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
+import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val creatureViewModel: CreatureViewModel by viewModels {
+        CreatureViewModelFactory(AppModule.getCreatureRepository(this))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +44,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_overflow, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(findNavController(R.id.creature_nav_host_fragment))
-                || super.onOptionsItemSelected(item)
+        return if (item.itemId == R.id.creatureListFragment) {
+            creatureViewModel.deleteAllCreatures()
+            item.onNavDestinationSelected(findNavController(R.id.creature_nav_host_fragment))
+        } else {
+            item.onNavDestinationSelected(findNavController(R.id.creature_nav_host_fragment))
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
