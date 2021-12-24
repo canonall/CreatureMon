@@ -14,5 +14,23 @@
         android:id="@+id/addCreatureFragment"
         android:name="com.canonal.creaturemon.ui.creature.AddCreatureFragment"
         android:label="@string/new_creature"
-        tools:layout="@layout/fragment_add_creature" />
+        tools:layout="@layout/fragment_add_creature">
+        <action
+            android:id="@+id/action_addCreatureFragment_to_newCreatureDetailFragment"
+            app:destination="@id/newCreatureDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCreatureDetailFragment"
+        android:name="com.canonal.creaturemon.ui.creature.NewCreatureDetailFragment"
+        android:label="@string/new_creature"
+        tools:layout="@layout/fragment_new_creature_detail">
+
+        <argument
+            android:name="creature"
+            app:argType="com.canonal.creaturemon.model.Creature" />
+        <action
+            android:id="@+id/action_newCreatureDetailFragment_to_creatureListFragment"
+            app:destination="@id/creatureListFragment"
+            />
+    </fragment>
 </navigation>

@@ -9,15 +9,18 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import com.canonal.creaturemon.model.Creature
+import com.canonal.creaturemon.model.attributeType.EnduranceType
+import com.canonal.creaturemon.model.attributeType.IntelligenceType
 
-class SpinAdapter(
+class EnduranceAdapter(
     context: Context,
     @LayoutRes private val layoutResource: Int,
     @IdRes private val textViewResourceId: Int = 0,
-    private val values: List<String>
-) : ArrayAdapter<String>(context, layoutResource, values) {
+    private val values: List<EnduranceType>
+) : ArrayAdapter<EnduranceType>(context, layoutResource, values) {
 
-    override fun getItem(position: Int): String = values[position]
+    override fun getItem(position: Int): EnduranceType = values[position]
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = createViewFromResource(convertView, parent, layoutResource)
@@ -58,8 +61,8 @@ class SpinAdapter(
         }
     }
 
-    private fun bindData(value: String, view: TextView): TextView {
-        view.text = value
+    private fun bindData(value: EnduranceType, view: TextView): TextView {
+        view.text = value.toString()
         return view
     }
 }

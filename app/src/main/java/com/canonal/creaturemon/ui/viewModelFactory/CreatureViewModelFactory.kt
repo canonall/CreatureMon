@@ -14,6 +14,6 @@ class CreatureViewModelFactory(
             @Suppress("UNCHECKED_CAST")
             return CreatureViewModel(creatureRepository) as T
         }
-        throw IllegalArgumentException("ERROR")
+        throw IllegalArgumentException("Creature ViewModel")
     }
 }
