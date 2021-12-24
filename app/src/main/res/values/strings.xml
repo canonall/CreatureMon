@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CreatureMon</string>
+
     <string name="clear_all_creatures">Clear All Creatures</string>
     <string name="add_creature">Add Creature</string>
 
@@ -10,19 +11,20 @@
     <string name="tough">tough</string>
     <string name="regular">regular</string>
 
+    <string name="home">home</string>
     <string name="avatar">Avatar</string>
     <string name="tap_to_set_avatar">Tap to set avatar</string>
-    <string name="intelligence">Intelligence</string>
-    <string name="strength">Strength</string>
-    <string name="endurance">Endurance</string>
+    <string name="intelligence">Intelligence:</string>
+    <string name="strength">Strength:</string>
+    <string name="endurance">Endurance:</string>
+    <string name="hit_points">Hit Points:</string>
     <string name="name">Name</string>
     <string name="creature_name">Creature name</string>
-    <string name="hit_points">HIT POINTS</string>
+    <string name="hit_points_upper">HIT POINTS</string>
     <string name="save">SAVE</string>
     <string name="generate">generate</string>
     <string name="error_saving_creature">Please complete all fields.</string>
     <string name="creature_saved">Creature saved!</string>
     <string name="creatures">Creatures</string>
     <string name="new_creature">New Creature</string>
-
 </resources>

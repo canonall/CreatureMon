@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,37 +10,134 @@
             type="com.canonal.creaturemon.model.Creature" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.creature.NewCreatureDetailFragment">
 
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvNameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
             android:text="@{creature.name}"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
+            tools:text="creature name" />
 
         <TextView
-            android:id="@+id/tvHitpoint"
+            android:id="@+id/tvIntelligenceLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvName"
-            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:text="@string/intelligence"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameLabel" />
+
+        <TextView
+            android:id="@+id/tvIntelligencePoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="end"
+            android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvIntelligenceLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+            tools:text="20" />
+
+        <TextView
+            android:id="@+id/tvStrengthLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/strength"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIntelligenceLabel" />
+
+        <TextView
+            android:id="@+id/tvStrengthPoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="end"
+            android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvStrengthLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+            tools:text="20" />
+
+        <TextView
+            android:id="@+id/tvEnduranceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/endurance"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStrengthLabel" />
+
+        <TextView
+            android:id="@+id/tvEndurancePoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="end"
+            android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvEnduranceLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+            tools:text="20" />
+
+        <TextView
+            android:id="@+id/tvHitPointsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/hit_points_upper"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEnduranceLabel"
+            tools:text="@string/hit_points_upper" />
+
+        <TextView
+            android:id="@+id/tvHitPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@{Integer.toString(creature.hitPoint)}"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="68sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHitPointsLabel"
+            tools:text="999" />
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/btnHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvHitpoint"
-            android:layout_centerInParent="true"
-            android:text="@string/home" />
+            android:text="@string/home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHitPoints" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

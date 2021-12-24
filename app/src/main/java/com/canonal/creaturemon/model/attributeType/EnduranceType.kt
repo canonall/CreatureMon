@@ -8,12 +8,12 @@ enum class EnduranceType {
     },
     REGULAR {
         override fun toString(): String {
-            return "Smart"
+            return "Regular"
         }
     },
     WEAK {
         override fun toString(): String {
-            return "Smart"
+            return "Weak"
         }
     }
 }

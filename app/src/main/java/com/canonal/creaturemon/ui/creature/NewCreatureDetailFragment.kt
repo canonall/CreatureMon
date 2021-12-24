@@ -28,7 +28,7 @@ class NewCreatureDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.creature = args.creature
-        binding.next.setOnClickListener {
+        binding.btnHome.setOnClickListener {
             findNavController().navigate(
                 NewCreatureDetailFragmentDirections.actionNewCreatureDetailFragmentToCreatureListFragment(),
                 NavOptions.Builder().popUpToCreatureListFragment(R.id.creatureListFragment, true)
