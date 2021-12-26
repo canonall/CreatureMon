@@ -8,6 +8,7 @@ class CreatureRepository(
     private val creatureDao: CreatureDao
 ) {
     suspend fun insertCreature(creature: Creature) = creatureDao.insertCreature(creature)
+    suspend fun deleteCreature(creature: Creature) = creatureDao.deleteCreature(creature)
     suspend fun deleteAllCreatures() = creatureDao.deleteAllCreatures()
-    fun getAllCreatures(): LiveData<List<Creature>> = creatureDao.getAllCreatures()
+    fun getAllCreatures(): LiveData<MutableList<Creature>> = creatureDao.getAllCreatures()
 }

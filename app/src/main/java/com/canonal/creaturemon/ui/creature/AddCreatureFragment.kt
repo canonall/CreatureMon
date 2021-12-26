@@ -13,8 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.FragmentAddCreatureBinding
 import com.canonal.creaturemon.di.AppModule
-import com.canonal.creaturemon.model.CreatureAttributeGenerator
-import com.canonal.creaturemon.model.CreatureGenerator
 import com.canonal.creaturemon.model.attributeType.EnduranceType
 import com.canonal.creaturemon.model.attributeType.IntelligenceType
 import com.canonal.creaturemon.model.attributeType.StrengthType
@@ -27,7 +25,7 @@ import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
 class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var addCreatureBinding: FragmentAddCreatureBinding
+    private lateinit var binding: FragmentAddCreatureBinding
     private lateinit var selectedIntelligenceItem: IntelligenceType
     private lateinit var selectedStrengthItem: StrengthType
     private lateinit var selectedEnduranceItem: EnduranceType
@@ -36,16 +34,16 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        addCreatureBinding = FragmentAddCreatureBinding.inflate(inflater, container, false)
-        return addCreatureBinding.root
+        binding = FragmentAddCreatureBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val etCreatureName = addCreatureBinding.etName
-        val spinnerIntelligence = addCreatureBinding.spinnerIntelligence
-        val spinnerStrength = addCreatureBinding.spinnerStrength
-        val spinnerEndurance = addCreatureBinding.spinnerEndurance
+        val etCreatureName = binding.etName
+        val spinnerIntelligence = binding.spinnerIntelligence
+        val spinnerStrength = binding.spinnerStrength
+        val spinnerEndurance = binding.spinnerEndurance
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
@@ -74,18 +72,18 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinnerEndurance.adapter = enduranceSpinAdapter
         spinnerEndurance.onItemSelectedListener = this
 
-        addCreatureBinding.btnGenerate.setOnClickListener {
+        binding.btnGenerate.setOnClickListener {
+            val newCreature = creatureViewModel.getNewCreature(
+                selectedIntelligenceItem,
+                selectedStrengthItem,
+                selectedEnduranceItem,
+                etCreatureName.text.toString()
+            )
             val action =
                 AddCreatureFragmentDirections.actionAddCreatureFragmentToNewCreatureDetailFragment(
-                    CreatureGenerator.generateCreature(
-                        CreatureAttributeGenerator.generateCreatureAttribute(
-                            selectedIntelligenceItem,
-                            selectedStrengthItem,
-                            selectedEnduranceItem
-                        ), etCreatureName.text.toString(),
-                        0
-                    )
+                    newCreature
                 )
+            creatureViewModel.insertCreature(newCreature)
             findNavController().navigate(
                 action,
                 NavOptions.Builder().popUpToCreatureListFragment(R.id.creatureListFragment, false)

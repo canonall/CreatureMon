@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.canonal.creaturemon.model.Creature
+import com.canonal.creaturemon.model.CreatureAttributeGenerator
+import com.canonal.creaturemon.model.CreatureGenerator
 import com.canonal.creaturemon.model.attributeType.EnduranceType
 import com.canonal.creaturemon.model.attributeType.IntelligenceType
 import com.canonal.creaturemon.model.attributeType.StrengthType
@@ -14,11 +16,17 @@ class CreatureViewModel(
     private val creatureRepository: CreatureRepository
 ) : ViewModel() {
 
-    val creatureList: LiveData<List<Creature>> = creatureRepository.getAllCreatures()
+    val creatureList: LiveData<MutableList<Creature>> = creatureRepository.getAllCreatures()
 
     fun insertCreature(creature: Creature) {
         viewModelScope.launch {
             creatureRepository.insertCreature(creature)
+        }
+    }
+
+    fun deleteCreature(creature: Creature){
+        viewModelScope.launch {
+            creatureRepository.deleteCreature(creature)
         }
     }
 
@@ -45,4 +53,20 @@ class CreatureViewModel(
         EnduranceType.REGULAR,
         EnduranceType.WEAK
     )
+
+    fun getNewCreature(
+        selectedIntelligenceItem: IntelligenceType,
+        selectedStrengthItem: StrengthType,
+        selectedEnduranceItem: EnduranceType,
+        creatureName: String
+    ): Creature =
+        CreatureGenerator.generateCreature(
+            CreatureAttributeGenerator.generateCreatureAttribute(
+                selectedIntelligenceItem,
+                selectedStrengthItem,
+                selectedEnduranceItem
+            ),
+            creatureName,
+            0
+        )
 }
