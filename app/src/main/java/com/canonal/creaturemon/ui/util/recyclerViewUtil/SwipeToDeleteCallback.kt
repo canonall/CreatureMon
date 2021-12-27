@@ -11,9 +11,9 @@ import com.canonal.creaturemon.R
 abstract class SwipeToDeleteCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-    private val deleteIcon= ContextCompat.getDrawable(context, R.drawable.ic_delete)
-    private val intrinsicWidth= deleteIcon?.intrinsicWidth
-    private val intrinsicHeight= deleteIcon?.intrinsicHeight
+    private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.ic_delete)
+    private val intrinsicWidth = deleteIcon?.intrinsicWidth
+    private val intrinsicHeight = deleteIcon?.intrinsicHeight
     private val background = ColorDrawable()
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
@@ -48,7 +48,7 @@ abstract class SwipeToDeleteCallback(context: Context) :
         isCurrentlyActive: Boolean
     ) {
         val itemView = viewHolder.itemView
-        val itemHeight = viewHolder.itemView.bottom - itemView.top
+        val itemHeight = viewHolder.itemView.height
         val isCanceled = dX == 0f && isCurrentlyActive.not()
 
         if (isCanceled) {
@@ -59,38 +59,63 @@ abstract class SwipeToDeleteCallback(context: Context) :
                 itemView.right.toFloat(),
                 itemView.bottom.toFloat()
             )
-            super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            super.onChildDraw(
+                canvas,
+                recyclerView,
+                viewHolder,
+                dX,
+                dY,
+                actionState,
+                isCurrentlyActive
+            )
             return
         }
 
         //draw background
         background.color = Color.RED
-        background.setBounds(itemView.right + dX.toInt(),itemView.top, itemView.right,itemView.bottom)
+        background.setBounds(
+            itemView.right + dX.toInt(),
+            itemView.top,
+            itemView.right,
+            itemView.bottom
+        )
         background.draw(canvas)
 
         // Calculate position of delete icon
-        if (intrinsicWidth != null && intrinsicHeight!= null) {
-             val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
-             val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
-             val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
-             val deleteIconRight = itemView.right - deleteIconMargin
-             val deleteIconBottom = deleteIconTop + intrinsicHeight
+        //less deleteIconMargin makes it align to right
+        if (intrinsicWidth != null && intrinsicHeight != null) {
+            val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
+            val deleteIconMargin = (itemHeight - intrinsicHeight) / 5
+            val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
+            val deleteIconRight = itemView.right - deleteIconMargin
+            val deleteIconBottom = deleteIconTop + intrinsicHeight
 
             // Draw the delete icon
-            deleteIcon?.setBounds(deleteIconLeft,deleteIconTop,deleteIconRight,deleteIconBottom)
+            deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
             deleteIcon?.draw(canvas)
-            }
-
-        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            super.onChildDraw(
+                canvas,
+                recyclerView,
+                viewHolder,
+                dX,
+                dY,
+                actionState,
+                isCurrentlyActive
+            )
+            return
+        }
     }
 
     private fun clearCanvas(
-        canvas: Canvas,
+        canvas: Canvas?,
         left: Float,
         top: Float,
         right: Float,
         bottom: Float
     ) {
-        canvas.drawRect(left, right, top, bottom, clearPaint)
+        canvas?.drawRect(left, top, right, bottom, clearPaint)
     }
+
+    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float = 0.5f
+
 }
