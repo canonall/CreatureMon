@@ -6,16 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.canonal.creaturemon.data.remote.RetrofitClient
 import com.canonal.creaturemon.data.remote.RickAndMortyApi
-import com.canonal.creaturemon.data.remote.response.Character
 import com.canonal.creaturemon.databinding.FragmentAvatarListBinding
+import com.canonal.creaturemon.di.AppModule
+import com.canonal.creaturemon.repository.AvatarRepository
 import com.canonal.creaturemon.ui.adapter.AvatarAdapter
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.canonal.creaturemon.ui.viewModel.AvatarViewModel
+import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
+import com.canonal.creaturemon.ui.viewModelFactory.AvatarViewModelFactory
+import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
 class AvatarListFragment : Fragment() {
 
@@ -31,36 +34,30 @@ class AvatarListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val rvAvatar = binding.rvAvatarList
-        val retrofit = RetrofitClient.getRetrofitInstance()
-        val rickAndMortyApi = retrofit.create(RickAndMortyApi::class.java)
-        val multipleCharacters = rickAndMortyApi.getMultipleCharacters(
+        val avatarViewModel: AvatarViewModel by viewModels {
+            AvatarViewModelFactory(AppModule.getAvatarRepository())
+        }
+
+        //There is a total of 826 characters
+        //We select randomly 15 of them
+        avatarViewModel.getCharacterList(
             1, 183, 2, 3, 5,
             8, 20, 15, 17, 124,
             254, 69, 99, 100, 11
         )
 
-        multipleCharacters.enqueue(object : Callback<List<Character>> {
-            override fun onResponse(
-                call: Call<List<Character>>,
-                response: Response<List<Character>>
-            ) {
-                val multipleCharactersResponse = response.body() as List<Character>
-                val avatarAdapter = AvatarAdapter(multipleCharactersResponse)
-                RecyclerViewUtils.initializeRecyclerView(
-                    rvAvatar,
-                    avatarAdapter,
-                    GridLayoutManager(view.context, 3),
-                    false
-                )
-//                rvAvatar.adapter = avatarAdapter
-//                rvAvatar.layoutManager = GridLayoutManager(view.context, 3)
-//                rvAvatar.setHasFixedSize(true)
-            }
+        avatarViewModel.characterList.observe(viewLifecycleOwner, {
+            val avatarAdapter = AvatarAdapter(it)
+            RecyclerViewUtils.initializeRecyclerView(
+                rvAvatar,
+                avatarAdapter,
+                GridLayoutManager(view.context, 3),
+                false
+            )
+        })
 
-            override fun onFailure(call: Call<List<Character>>, t: Throwable) {
-                Log.e("RETROFIT", "onFailure: FAIL ")
-            }
-
+        avatarViewModel.errorMessage.observe(viewLifecycleOwner,{
+            Log.e("RETROFIT FAIL", "onViewCreated: RETROFIT FAIL at AvatarListFragment", )
         })
     }
 }

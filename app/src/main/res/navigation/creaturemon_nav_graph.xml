@@ -38,6 +38,6 @@
     <fragment
         android:id="@+id/avatarListFragment"
         android:name="com.canonal.creaturemon.ui.creature.AvatarListFragment"
-        android:label="AvatarListFragment"
+        android:label="@string/avatar"
         tools:layout="@layout/fragment_avatar_list" />
 </navigation>
