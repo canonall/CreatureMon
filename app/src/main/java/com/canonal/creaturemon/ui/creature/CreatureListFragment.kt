@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canonal.creaturemon.databinding.FragmentCreatureListBinding
 import com.canonal.creaturemon.di.AppModule
-import com.canonal.creaturemon.model.Creature
 import com.canonal.creaturemon.ui.adapter.CreatureAdapter
+import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.SwipeToDeleteCallback
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
@@ -35,11 +35,13 @@ class CreatureListFragment : Fragment() {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
         creatureViewModel.creatureList.observe(viewLifecycleOwner, {
-            initializeRecyclerView(rvCreatureList, it)
-//            val creatureAdapter = CreatureAdapter(it)
-//            rvCreatureList.adapter = creatureAdapter
-//            rvCreatureList.layoutManager = LinearLayoutManager(view.context)
-//            rvCreatureList.setHasFixedSize(true)
+            val creatureAdapter = CreatureAdapter(it)
+            RecyclerViewUtils.initializeRecyclerView(
+                rvCreatureList,
+                creatureAdapter,
+                LinearLayoutManager(view.context),
+                true
+            )
         })
 
         val swipeHandler = object : SwipeToDeleteCallback(view.context) {
@@ -51,16 +53,6 @@ class CreatureListFragment : Fragment() {
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(rvCreatureList)
-    }
-
-    private fun initializeRecyclerView(
-        rvCreatureList: RecyclerView,
-        creatureList: MutableList<Creature>
-    ) {
-        val creatureAdapter = CreatureAdapter(creatureList)
-        rvCreatureList.adapter = creatureAdapter
-        rvCreatureList.layoutManager = LinearLayoutManager(context)
-        rvCreatureList.setHasFixedSize(true)
     }
 }
 

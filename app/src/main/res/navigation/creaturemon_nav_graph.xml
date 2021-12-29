@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_addCreatureFragment_to_newCreatureDetailFragment"
             app:destination="@id/newCreatureDetailFragment" />
+        <action
+            android:id="@+id/action_addCreatureFragment_to_avatarListFragment"
+            app:destination="@id/avatarListFragment" />
     </fragment>
     <fragment
         android:id="@+id/newCreatureDetailFragment"
@@ -30,7 +33,11 @@
             app:argType="com.canonal.creaturemon.model.Creature" />
         <action
             android:id="@+id/action_newCreatureDetailFragment_to_creatureListFragment"
-            app:destination="@id/creatureListFragment"
-            />
+            app:destination="@id/creatureListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/avatarListFragment"
+        android:name="com.canonal.creaturemon.ui.creature.AvatarListFragment"
+        android:label="AvatarListFragment"
+        tools:layout="@layout/fragment_avatar_list" />
 </navigation>

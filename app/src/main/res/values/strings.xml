@@ -27,4 +27,6 @@
     <string name="creature_saved">Creature saved!</string>
     <string name="creatures">Creatures</string>
     <string name="new_creature">New Creature</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -15,7 +15,7 @@ interface CreatureDao {
     @Query("DELETE FROM creature_table")
     suspend fun deleteAllCreatures()
 
-    @Query("SELECT * FROM creature_table ORDER BY name ASC")
+    @Query("SELECT * FROM creature_table ORDER BY hitPoint ASC")
     fun getAllCreatures(): LiveData<MutableList<Creature>>
 
 }

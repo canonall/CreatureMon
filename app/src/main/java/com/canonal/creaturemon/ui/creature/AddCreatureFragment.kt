@@ -19,6 +19,7 @@ import com.canonal.creaturemon.model.attributeType.StrengthType
 import com.canonal.creaturemon.ui.adapter.EnduranceAdapter
 import com.canonal.creaturemon.ui.adapter.IntelligenceAdapter
 import com.canonal.creaturemon.ui.adapter.StrengthAdapter
+import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToCreatureListFragment
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
@@ -44,6 +45,8 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val spinnerIntelligence = binding.spinnerIntelligence
         val spinnerStrength = binding.spinnerStrength
         val spinnerEndurance = binding.spinnerEndurance
+        val btnGenerate = binding.btnGenerate
+        val tvSetAvatar = binding.tvTapAvatarLabel
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
@@ -72,7 +75,15 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinnerEndurance.adapter = enduranceSpinAdapter
         spinnerEndurance.onItemSelectedListener = this
 
-        binding.btnGenerate.setOnClickListener {
+        tvSetAvatar.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_addCreatureFragment_to_avatarListFragment,
+                null,
+                AnimationUtil.getNextFragmentSlideNavOptions()
+            )
+        }
+
+        btnGenerate.setOnClickListener {
             val newCreature = creatureViewModel.getNewCreature(
                 selectedIntelligenceItem,
                 selectedStrengthItem,

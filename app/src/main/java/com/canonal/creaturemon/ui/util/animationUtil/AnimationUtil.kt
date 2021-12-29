@@ -1,4 +1,4 @@
-package com.canonal.creaturemon.ui.util
+package com.canonal.creaturemon.ui.util.animationUtil
 
 import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
