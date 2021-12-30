@@ -2,6 +2,7 @@ package com.canonal.creaturemon.ui.creature
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -11,11 +12,18 @@ import androidx.navigation.fragment.navArgs
 import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.FragmentNewCreatureDetailBinding
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
+import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
 
 class NewCreatureDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentNewCreatureDetailBinding
     private val args: NewCreatureDetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,5 +42,10 @@ class NewCreatureDetailFragment : Fragment() {
                 NavOptions.Builder().popUpToFragment(R.id.creatureListFragment, true)
             )
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        removeMenuItem(menu, R.id.addCreatureFragment)
+        removeMenuItem(menu, R.id.creatureListFragment)
     }
 }

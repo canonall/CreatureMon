@@ -13,7 +13,6 @@ class AvatarViewModel(
     private val avatarRepository: AvatarRepository
 ) : ViewModel() {
 
-
     private val mutableErrorMessage: MutableLiveData<String> = MutableLiveData()
     val errorMessage: LiveData<String>
         get() = mutableErrorMessage

@@ -1,11 +1,12 @@
 package com.canonal.creaturemon.ui.util.navigationUtil
 
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.canonal.creaturemon.R
-
 
 fun NavOptions.Builder.popUpToFragment(
     @IdRes destinationFragmentId: Int,
@@ -25,5 +26,11 @@ fun Fragment.getNavigationResult(key: String) =
 
 fun Fragment.setNavigationResult(result: String, key: String) {
     findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
+}
+
+fun removeMenuItem(menu: Menu, itemId: Int){
+    val menuItem: MenuItem = menu.findItem(itemId)
+    menuItem.isVisible = false
+
 }
 

@@ -14,6 +14,7 @@ import com.canonal.creaturemon.databinding.FragmentCreatureListBinding
 import com.canonal.creaturemon.di.AppModule
 import com.canonal.creaturemon.ui.adapter.CreatureAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
+import com.canonal.creaturemon.ui.util.recyclerViewUtil.BounceEdgeEffectFactory
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.SwipeToDeleteCallback
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
@@ -43,7 +44,8 @@ class CreatureListFragment : Fragment() {
                 creatureAdapter,
                 LinearLayoutManager(view.context),
                 true,
-                AnimationUtil.getLayoutAnimationController(view.context,R.anim.creature_list_layout_animation)
+                AnimationUtil.getLayoutAnimationController(view.context,R.anim.creature_list_layout_animation),
+                BounceEdgeEffectFactory()
             )
         })
 

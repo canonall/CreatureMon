@@ -10,106 +10,115 @@
             type="com.canonal.creaturemon.model.Creature" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp">
 
-        <ImageView
-            android:id="@+id/ivItemAvatar"
-            setImageWithUrl="@{creature.icon}"
-            android:layout_width="80dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/avatar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@{creature.name}"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/ivItemAvatar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="creature name" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvIntelligenceLabel"
-            style="@style/ItemCreatureListTextViewLabel"
-            android:text="@string/intelligence"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName" />
+            <ImageView
+                android:id="@+id/ivItemAvatar"
+                setImageWithUrl="@{creature.icon}"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/avatar"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvIntelligencePoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvIntelligenceLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
-            tools:text="20" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{creature.name}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/ivItemAvatar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="creature name" />
 
-        <TextView
-            android:id="@+id/tvStrengthLabel"
-            style="@style/ItemCreatureListTextViewLabel"
-            android:text="@string/strength"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvIntelligenceLabel" />
+            <TextView
+                android:id="@+id/tvIntelligenceLabel"
+                style="@style/ItemCreatureListTextViewLabel"
+                android:text="@string/intelligence"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-        <TextView
-            android:id="@+id/tvStrengthPoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvStrengthLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
-            tools:text="20" />
+            <TextView
+                android:id="@+id/tvIntelligencePoint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvIntelligenceLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+                tools:text="20" />
 
-        <TextView
-            android:id="@+id/tvEnduranceLabel"
-            style="@style/ItemCreatureListTextViewLabel"
-            android:text="@string/endurance"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvStrengthLabel" />
+            <TextView
+                android:id="@+id/tvStrengthLabel"
+                style="@style/ItemCreatureListTextViewLabel"
+                android:text="@string/strength"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvIntelligenceLabel" />
 
-        <TextView
-            android:id="@+id/tvEndurancePoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvEnduranceLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
-            tools:text="20" />
+            <TextView
+                android:id="@+id/tvStrengthPoint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvStrengthLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+                tools:text="20" />
 
-        <TextView
-            android:id="@+id/tvHitPointsLabel"
-            style="@style/ItemCreatureListTextViewLabel"
-            android:text="@string/hit_points"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvEnduranceLabel" />
+            <TextView
+                android:id="@+id/tvEnduranceLabel"
+                style="@style/ItemCreatureListTextViewLabel"
+                android:text="@string/endurance"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvStrengthLabel" />
 
-        <TextView
-            android:id="@+id/tvHitPoints"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="@{Integer.toString(creature.hitPoint)}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvHitPointsLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
-            tools:text="20" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvEndurancePoint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvEnduranceLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/tvHitPointsLabel"
+                style="@style/ItemCreatureListTextViewLabel"
+                android:text="@string/hit_points"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvEnduranceLabel" />
+
+            <TextView
+                android:id="@+id/tvHitPoints"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Integer.toString(creature.hitPoint)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvHitPointsLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
+                tools:text="20" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>
 

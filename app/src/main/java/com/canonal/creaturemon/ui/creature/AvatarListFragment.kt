@@ -2,9 +2,7 @@ package com.canonal.creaturemon.ui.creature
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +12,9 @@ import com.canonal.creaturemon.databinding.FragmentAvatarListBinding
 import com.canonal.creaturemon.di.AppModule
 import com.canonal.creaturemon.ui.adapter.AvatarAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
+import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
 import com.canonal.creaturemon.ui.util.navigationUtil.setNavigationResult
+import com.canonal.creaturemon.ui.util.recyclerViewUtil.BounceEdgeEffectFactory
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.viewModel.AvatarViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.AvatarViewModelFactory
@@ -22,6 +22,11 @@ import com.canonal.creaturemon.ui.viewModelFactory.AvatarViewModelFactory
 class AvatarListFragment : Fragment() {
 
     private lateinit var binding: FragmentAvatarListBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,13 +60,19 @@ class AvatarListFragment : Fragment() {
                 avatarAdapter,
                 GridLayoutManager(view.context, 3),
                 false,
-                AnimationUtil.getLayoutAnimationController(view.context, R.anim.avatar_list_layout_animation)
+                AnimationUtil.getLayoutAnimationController(view.context, R.anim.avatar_list_layout_animation),
+                BounceEdgeEffectFactory()
             )
         })
 
         avatarViewModel.errorMessage.observe(viewLifecycleOwner, {
             Log.e("RETROFIT FAIL", "onViewCreated: RETROFIT FAIL at AvatarListFragment")
         })
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        removeMenuItem(menu,R.id.addCreatureFragment)
+        removeMenuItem(menu,R.id.creatureListFragment)
     }
 }
 

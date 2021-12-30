@@ -3,6 +3,7 @@ package com.canonal.creaturemon.ui.creature
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -22,6 +23,7 @@ import com.canonal.creaturemon.ui.adapter.StrengthAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
+import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 import com.squareup.picasso.Picasso
@@ -33,6 +35,10 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var selectedStrengthItem: StrengthType
     private lateinit var selectedEnduranceItem: EnduranceType
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -144,4 +150,8 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         Log.e("NothingSelected", "onNothingSelected: AddCreatureFragment ")
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        removeMenuItem(menu,R.id.addCreatureFragment)
+        removeMenuItem(menu,R.id.creatureListFragment)
+    }
 }
