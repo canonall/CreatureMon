@@ -19,6 +19,8 @@
             android:id="@+id/ivAvatar"
             android:layout_width="160dp"
             android:layout_height="160dp"
+            android:scaleType="fitXY"
+            setImageWithUrl="@{creature.icon}"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/avatar"
             app:layout_constraintEnd_toEndOf="parent"

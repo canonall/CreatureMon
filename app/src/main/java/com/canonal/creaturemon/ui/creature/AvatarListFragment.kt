@@ -7,18 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.canonal.creaturemon.data.remote.RetrofitClient
-import com.canonal.creaturemon.data.remote.RickAndMortyApi
+import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.FragmentAvatarListBinding
 import com.canonal.creaturemon.di.AppModule
-import com.canonal.creaturemon.repository.AvatarRepository
 import com.canonal.creaturemon.ui.adapter.AvatarAdapter
+import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
+import com.canonal.creaturemon.ui.util.navigationUtil.setNavigationResult
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.viewModel.AvatarViewModel
-import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.AvatarViewModelFactory
-import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
 class AvatarListFragment : Fragment() {
 
@@ -47,17 +46,21 @@ class AvatarListFragment : Fragment() {
         )
 
         avatarViewModel.characterList.observe(viewLifecycleOwner, {
-            val avatarAdapter = AvatarAdapter(it)
+            val avatarAdapter = AvatarAdapter(it) { avatarUrl ->
+                setNavigationResult(avatarUrl, "avatarUrl")
+                findNavController().popBackStack(R.id.addCreatureFragment,false)
+            }
             RecyclerViewUtils.initializeRecyclerView(
                 rvAvatar,
                 avatarAdapter,
                 GridLayoutManager(view.context, 3),
-                false
+                false,
+                AnimationUtil.getLayoutAnimationController(view.context, R.anim.avatar_list_layout_animation)
             )
         })
 
-        avatarViewModel.errorMessage.observe(viewLifecycleOwner,{
-            Log.e("RETROFIT FAIL", "onViewCreated: RETROFIT FAIL at AvatarListFragment", )
+        avatarViewModel.errorMessage.observe(viewLifecycleOwner, {
+            Log.e("RETROFIT FAIL", "onViewCreated: RETROFIT FAIL at AvatarListFragment")
         })
     }
 }

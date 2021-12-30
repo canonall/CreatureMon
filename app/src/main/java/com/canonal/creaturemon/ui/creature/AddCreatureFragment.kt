@@ -20,9 +20,11 @@ import com.canonal.creaturemon.ui.adapter.EnduranceAdapter
 import com.canonal.creaturemon.ui.adapter.IntelligenceAdapter
 import com.canonal.creaturemon.ui.adapter.StrengthAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
-import com.canonal.creaturemon.ui.util.navigationUtil.popUpToCreatureListFragment
+import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
+import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
+import com.squareup.picasso.Picasso
 
 class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -40,13 +42,14 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val ivAvatar = binding.ivAvatar
+        var selectedAvatarUrl= ""
         val etCreatureName = binding.etName
         val spinnerIntelligence = binding.spinnerIntelligence
         val spinnerStrength = binding.spinnerStrength
         val spinnerEndurance = binding.spinnerEndurance
         val btnGenerate = binding.btnGenerate
-        val tvSetAvatar = binding.tvTapAvatarLabel
+        val tvTapAvatarLabel = binding.tvTapAvatarLabel
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
@@ -75,7 +78,7 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinnerEndurance.adapter = enduranceSpinAdapter
         spinnerEndurance.onItemSelectedListener = this
 
-        tvSetAvatar.setOnClickListener {
+        ivAvatar.setOnClickListener {
             findNavController().navigate(
                 R.id.action_addCreatureFragment_to_avatarListFragment,
                 null,
@@ -83,22 +86,43 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
             )
         }
 
+        getNavigationResult("avatarUrl")?.observe(viewLifecycleOwner, { avatarUrl ->
+            if (avatarUrl != null) {
+                selectedAvatarUrl = avatarUrl
+                Picasso.get().load(selectedAvatarUrl).into(ivAvatar)
+                tvTapAvatarLabel.visibility = View.INVISIBLE
+            }
+        })
+
         btnGenerate.setOnClickListener {
-            val newCreature = creatureViewModel.getNewCreature(
-                selectedIntelligenceItem,
-                selectedStrengthItem,
-                selectedEnduranceItem,
-                etCreatureName.text.toString()
-            )
-            val action =
-                AddCreatureFragmentDirections.actionAddCreatureFragmentToNewCreatureDetailFragment(
-                    newCreature
-                )
-            creatureViewModel.insertCreature(newCreature)
-            findNavController().navigate(
-                action,
-                NavOptions.Builder().popUpToCreatureListFragment(R.id.creatureListFragment, false)
-            )
+            when {
+                etCreatureName.text.toString().isEmpty() -> {
+                    binding.tvCreatureNameError.visibility = View.VISIBLE
+                }
+                selectedAvatarUrl.isEmpty() -> {
+                    binding.tvCreatureNameError.visibility= View.GONE
+                    binding.tvCreatureAvatarError.visibility = View.VISIBLE
+                }
+                else -> {
+                    val newCreature = creatureViewModel.getNewCreature(
+                        etCreatureName.text.toString(),
+                        selectedIntelligenceItem,
+                        selectedStrengthItem,
+                        selectedEnduranceItem,
+                        selectedAvatarUrl
+                    )
+                    val action =
+                        AddCreatureFragmentDirections.actionAddCreatureFragmentToNewCreatureDetailFragment(
+                            newCreature
+                        )
+                    creatureViewModel.insertCreature(newCreature)
+                    findNavController().navigate(
+                        action,
+                        NavOptions.Builder().popUpToFragment(R.id.creatureListFragment, false)
+                    )
+                }
+            }
+
         }
     }
 

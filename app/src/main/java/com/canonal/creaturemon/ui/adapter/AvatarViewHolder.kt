@@ -6,7 +6,10 @@ import com.canonal.creaturemon.databinding.ItemAvatarListBinding
 class AvatarViewHolder(
     val binding: ItemAvatarListBinding
 ) : BaseViewHolder(binding.root) {
-    fun bind(avatar: Character) {
-        binding.avatar = avatar
+    fun bind(character: Character, onAvatarClick: (String)-> Unit) {
+        binding.avatar = character
+        binding.ivAvatar.setOnClickListener{
+            onAvatarClick.invoke(character.image)
+        }
     }
 }

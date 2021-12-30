@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.FragmentCreatureListBinding
 import com.canonal.creaturemon.di.AppModule
 import com.canonal.creaturemon.ui.adapter.CreatureAdapter
+import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.util.recyclerViewUtil.SwipeToDeleteCallback
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
@@ -40,7 +42,8 @@ class CreatureListFragment : Fragment() {
                 rvCreatureList,
                 creatureAdapter,
                 LinearLayoutManager(view.context),
-                true
+                true,
+                AnimationUtil.getLayoutAnimationController(view.context,R.anim.creature_list_layout_animation)
             )
         })
 

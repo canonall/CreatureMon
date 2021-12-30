@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.canonal.creaturemon.R
 import com.canonal.creaturemon.databinding.FragmentNewCreatureDetailBinding
-import com.canonal.creaturemon.ui.util.navigationUtil.popUpToCreatureListFragment
+import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
 
 class NewCreatureDetailFragment : Fragment() {
 
@@ -31,7 +31,7 @@ class NewCreatureDetailFragment : Fragment() {
         binding.btnHome.setOnClickListener {
             findNavController().navigate(
                 NewCreatureDetailFragmentDirections.actionNewCreatureDetailFragmentToCreatureListFragment(),
-                NavOptions.Builder().popUpToCreatureListFragment(R.id.creatureListFragment, true)
+                NavOptions.Builder().popUpToFragment(R.id.creatureListFragment, true)
             )
         }
     }

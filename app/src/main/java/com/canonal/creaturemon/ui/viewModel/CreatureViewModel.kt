@@ -55,10 +55,11 @@ class CreatureViewModel(
     )
 
     fun getNewCreature(
+        creatureName: String,
         selectedIntelligenceItem: IntelligenceType,
         selectedStrengthItem: StrengthType,
         selectedEnduranceItem: EnduranceType,
-        creatureName: String
+        selectedAvatarUrl: String
     ): Creature =
         CreatureGenerator.generateCreature(
             CreatureAttributeGenerator.generateCreatureAttribute(
@@ -67,6 +68,6 @@ class CreatureViewModel(
                 selectedEnduranceItem
             ),
             creatureName,
-            0
+            selectedAvatarUrl
         )
 }

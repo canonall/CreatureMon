@@ -1,10 +1,7 @@
 package com.canonal.creaturemon.data.local
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.canonal.creaturemon.data.local.dao.CreatureDao
 import com.canonal.creaturemon.data.local.typeConverter.CreatureAttributeConverter
@@ -18,7 +15,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Creature::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Creature::class],
+    version = 2,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2)
+    ],
+    exportSchema = true
+)
 @TypeConverters(CreatureAttributeConverter::class)
 abstract class CreatureDatabase : RoomDatabase() {
 
@@ -57,7 +61,7 @@ abstract class CreatureDatabase : RoomDatabase() {
                                 StrengthType.REGULAR,
                                 EnduranceType.WEAK
                             ), "Chris Paul",
-                            0
+                            "https://rickandmortyapi.com/api/character/avatar/361.jpeg"
                         )
                     )
 
@@ -68,7 +72,7 @@ abstract class CreatureDatabase : RoomDatabase() {
                                 StrengthType.STRONG,
                                 EnduranceType.TOUGH
                             ), "LeBron James",
-                            1
+                            "https://rickandmortyapi.com/api/character/avatar/800.jpeg"
                         )
                     )
 
@@ -79,7 +83,7 @@ abstract class CreatureDatabase : RoomDatabase() {
                                 StrengthType.WEAK,
                                 EnduranceType.REGULAR
                             ), "Kevin Durant",
-                            2
+                            "https://rickandmortyapi.com/api/character/avatar/353.jpeg"
                         )
                     )
                 }

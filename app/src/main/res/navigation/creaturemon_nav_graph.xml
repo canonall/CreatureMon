@@ -39,5 +39,9 @@
         android:id="@+id/avatarListFragment"
         android:name="com.canonal.creaturemon.ui.creature.AvatarListFragment"
         android:label="@string/avatar"
-        tools:layout="@layout/fragment_avatar_list" />
+        tools:layout="@layout/fragment_avatar_list">
+        <action
+            android:id="@+id/action_avatarListFragment_to_addCreatureFragment"
+            app:destination="@id/addCreatureFragment" />
+    </fragment>
 </navigation>

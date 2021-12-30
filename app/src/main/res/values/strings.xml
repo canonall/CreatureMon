@@ -27,4 +27,7 @@
     <string name="creature_saved">Creature saved!</string>
     <string name="creatures">Creatures</string>
     <string name="new_creature">New Creature</string>
+
+    <string name="empty_creature_name">*Name field can\'t be empty</string>
+    <string name="empty_creature_avatar">*Please select a creature avatar</string>
 </resources>
