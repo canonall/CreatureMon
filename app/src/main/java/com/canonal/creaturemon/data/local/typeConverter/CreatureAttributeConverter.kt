@@ -21,7 +21,6 @@ class CreatureAttributeConverter {
         return null
     }
 
-
     @TypeConverter
     fun stringToCreatureAttribute(value: String?): CreatureAttribute? {
         if (value != null) {

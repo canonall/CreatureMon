@@ -75,6 +75,7 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
             values = creatureViewModel.getEnduranceTypeList()
         )
 
+        //TODO create general function
         spinnerIntelligence.adapter = intelligenceSpinAdapter
         spinnerIntelligence.onItemSelectedListener = this
 
