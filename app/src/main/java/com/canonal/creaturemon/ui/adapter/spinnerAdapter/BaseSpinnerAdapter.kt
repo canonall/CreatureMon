@@ -1,4 +1,4 @@
-package com.canonal.creaturemon.ui.adapter
+package com.canonal.creaturemon.ui.adapter.spinnerAdapter
 
 import android.content.Context
 import android.util.Log
@@ -9,18 +9,14 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import com.canonal.creaturemon.model.Creature
-import com.canonal.creaturemon.model.attributeType.EnduranceType
-import com.canonal.creaturemon.model.attributeType.IntelligenceType
 
-class EnduranceAdapter(
+abstract class BaseSpinnerAdapter<T>(
     context: Context,
     @LayoutRes private val layoutResource: Int,
     @IdRes private val textViewResourceId: Int = 0,
-    private val values: List<EnduranceType>
-) : ArrayAdapter<EnduranceType>(context, layoutResource, values) {
-
-    override fun getItem(position: Int): EnduranceType = values[position]
+    private val values: List<T>
+) : ArrayAdapter<T>(context, layoutResource, values) {
+    override fun getItem(position: Int): T = values[position]
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = createViewFromResource(convertView, parent, layoutResource)
@@ -61,7 +57,7 @@ class EnduranceAdapter(
         }
     }
 
-    private fun bindData(value: EnduranceType, view: TextView): TextView {
+    private fun bindData(value: T, view: TextView): TextView {
         view.text = value.toString()
         return view
     }

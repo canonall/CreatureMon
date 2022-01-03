@@ -17,13 +17,14 @@ import com.canonal.creaturemon.di.AppModule
 import com.canonal.creaturemon.model.attributeType.EnduranceType
 import com.canonal.creaturemon.model.attributeType.IntelligenceType
 import com.canonal.creaturemon.model.attributeType.StrengthType
-import com.canonal.creaturemon.ui.adapter.EnduranceAdapter
-import com.canonal.creaturemon.ui.adapter.IntelligenceAdapter
-import com.canonal.creaturemon.ui.adapter.StrengthAdapter
+import com.canonal.creaturemon.ui.adapter.spinnerAdapter.EnduranceAdapter
+import com.canonal.creaturemon.ui.adapter.spinnerAdapter.IntelligenceAdapter
+import com.canonal.creaturemon.ui.adapter.spinnerAdapter.StrengthAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
 import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
+import com.canonal.creaturemon.ui.util.spinnerUtil.SpinnerUtil
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 import com.squareup.picasso.Picasso
@@ -59,6 +60,7 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
+
         val intelligenceSpinAdapter = IntelligenceAdapter(
             view.context,
             R.layout.spinner_layout,
@@ -75,15 +77,21 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
             values = creatureViewModel.getEnduranceTypeList()
         )
 
-        //TODO create general function
-        spinnerIntelligence.adapter = intelligenceSpinAdapter
-        spinnerIntelligence.onItemSelectedListener = this
-
-        spinnerStrength.adapter = strengthSpinAdapter
-        spinnerStrength.onItemSelectedListener = this
-
-        spinnerEndurance.adapter = enduranceSpinAdapter
-        spinnerEndurance.onItemSelectedListener = this
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerIntelligence,
+            intelligenceSpinAdapter,
+            this
+        )
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerStrength,
+            strengthSpinAdapter,
+            this
+        )
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerEndurance,
+            enduranceSpinAdapter,
+            this
+        )
 
         ivAvatar.setOnClickListener {
             findNavController().navigate(
