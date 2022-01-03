@@ -20,7 +20,7 @@ MVVM(Model-View-ViewModel) is an architectural pattern which provides a key bene
  We(ViewModel) go to market and ask the market owner(repository/model) about these ingredients. The market owner decides where he/she will provide and get these ingredients(RoomDB, 
  Retrofit, SharedPreferences...) and gives us(ViewModel) the ingredients(data). Eventually, we give the ingredients(data) to our friend(View/UI).  
  
- **Key Point:** Our friend doesn't know where we get the ingredients, he/she just prepares the dinner. We don't know where the market owner get the ingredients, 
+ **Key Point:** Our friend doesn't know where we get the ingredients, he/she just prepares the dinner. We don't know where the market owner gets the ingredients, 
  we just get them and give them to our friend.
  
  **Benefits**
