@@ -14,11 +14,13 @@ class RecyclerViewUtils {
             layoutAnimationController: LayoutAnimationController,
             edgeEffectFactory: RecyclerView.EdgeEffectFactory
         ) {
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(hasFixedSize)
-            recyclerView.layoutAnimation = layoutAnimationController
-            recyclerView.edgeEffectFactory = edgeEffectFactory
+            recyclerView.apply {
+                this.adapter = adapter
+                this.layoutManager = layoutManager
+                this.setHasFixedSize(hasFixedSize)
+                this.layoutAnimation = layoutAnimationController
+                this.edgeEffectFactory = edgeEffectFactory
+            }
         }
     }
 }

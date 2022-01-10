@@ -60,7 +60,8 @@ abstract class CreatureDatabase : RoomDatabase() {
                                 IntelligenceType.SMART,
                                 StrengthType.REGULAR,
                                 EnduranceType.WEAK
-                            ), "Chris Paul",
+                            ),
+                            "Toxic Rick",
                             "https://rickandmortyapi.com/api/character/avatar/361.jpeg"
                         )
                     )
@@ -71,7 +72,8 @@ abstract class CreatureDatabase : RoomDatabase() {
                                 IntelligenceType.SMART,
                                 StrengthType.STRONG,
                                 EnduranceType.TOUGH
-                            ), "LeBron James",
+                            ),
+                            "Super Turkey",
                             "https://rickandmortyapi.com/api/character/avatar/800.jpeg"
                         )
                     )
@@ -81,8 +83,9 @@ abstract class CreatureDatabase : RoomDatabase() {
                             CreatureAttributeGenerator.generateCreatureAttribute(
                                 IntelligenceType.REGULAR,
                                 StrengthType.WEAK,
-                                EnduranceType.REGULAR
-                            ), "Kevin Durant",
+                                EnduranceType.WEAK
+                            ),
+                            "Tiny Rick",
                             "https://rickandmortyapi.com/api/character/avatar/353.jpeg"
                         )
                     )
