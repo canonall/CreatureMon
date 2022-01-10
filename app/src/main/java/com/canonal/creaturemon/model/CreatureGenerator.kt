@@ -15,6 +15,7 @@ class CreatureGenerator {
             )
         }
 
+
         private fun calculateHitPoint(creatureAttribute: CreatureAttribute): Int {
             return creatureAttribute.intelligence * 2 +
                     creatureAttribute.strength * 3 +
