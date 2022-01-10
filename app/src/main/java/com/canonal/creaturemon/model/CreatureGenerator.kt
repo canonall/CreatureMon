@@ -7,7 +7,12 @@ class CreatureGenerator {
             name: String,
             icon: String
         ): Creature {
-            return Creature(name, creatureAttribute, calculateHitPoint(creatureAttribute), icon)
+            return Creature(
+                name = name,
+                creatureAttribute = creatureAttribute,
+                hitPoint = calculateHitPoint(creatureAttribute),
+                icon = icon
+            )
         }
 
         private fun calculateHitPoint(creatureAttribute: CreatureAttribute): Int {
