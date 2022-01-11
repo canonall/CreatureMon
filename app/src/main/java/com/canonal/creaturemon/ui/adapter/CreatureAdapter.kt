@@ -2,13 +2,12 @@ package com.canonal.creaturemon.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.canonal.creaturemon.databinding.ItemCreatureListBinding
 import com.canonal.creaturemon.model.Creature
+import com.canonal.creaturemon.ui.util.recyclerViewUtil.CreatureDiffUtil
 
-class CreatureAdapter(
-    private val creatureList: MutableList<Creature>,
-) : RecyclerView.Adapter<BaseViewHolder>() {
+class CreatureAdapter : ListAdapter<Creature, BaseViewHolder>(CreatureDiffUtil()) {
 
     private lateinit var binding: ItemCreatureListBinding
 
@@ -19,16 +18,7 @@ class CreatureAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val creature = creatureList[position]
+        val creature = currentList[position]
         (holder as CreatureViewHolder).bind(creature)
-    }
-
-    override fun getItemCount() = creatureList.size
-
-    fun getCreatureAt(position: Int): Creature = creatureList[position]
-
-    fun removeAt(position: Int) {
-        creatureList.removeAt(position)
-        notifyItemRemoved(position)
     }
 }

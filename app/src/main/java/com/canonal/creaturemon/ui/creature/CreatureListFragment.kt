@@ -33,31 +33,33 @@ class CreatureListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val rvCreatureList = binding.rvCreatureList
+        val rvCreature = binding.rvCreatureList
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
         }
+        val creatureAdapter = CreatureAdapter()
+        RecyclerViewUtils.initializeRecyclerView(
+            rvCreature,
+            creatureAdapter,
+            LinearLayoutManager(view.context),
+            true,
+            AnimationUtil.getLayoutAnimationController(
+                view.context,
+                R.anim.creature_list_layout_animation
+            ),
+            BounceEdgeEffectFactory()
+        )
         creatureViewModel.creatureList.observe(viewLifecycleOwner, {
-            val creatureAdapter = CreatureAdapter(it)
-            RecyclerViewUtils.initializeRecyclerView(
-                rvCreatureList,
-                creatureAdapter,
-                LinearLayoutManager(view.context),
-                true,
-                AnimationUtil.getLayoutAnimationController(view.context,R.anim.creature_list_layout_animation),
-                BounceEdgeEffectFactory()
-            )
+            creatureAdapter.submitList(it)
         })
-
         val swipeHandler = object : SwipeToDeleteCallback(view.context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val adapter = rvCreatureList.adapter as CreatureAdapter
-                creatureViewModel.deleteCreature(adapter.getCreatureAt(viewHolder.adapterPosition))
-                adapter.removeAt(viewHolder.adapterPosition)
+                val deletedCreature = creatureAdapter.currentList[viewHolder.adapterPosition]
+                creatureViewModel.deleteCreature(deletedCreature)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        itemTouchHelper.attachToRecyclerView(rvCreatureList)
+        itemTouchHelper.attachToRecyclerView(rvCreature)
     }
 }
 
