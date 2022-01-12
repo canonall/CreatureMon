@@ -37,6 +37,8 @@ MVVM(Model-View-ViewModel) is an architectural pattern which provides a key bene
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
+  - [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter)
+  - [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil)
   - [ItemTouchHelper](https://developer.android.com/reference/androidx/recyclerview/widget/ItemTouchHelper)
   - [EdgeEffectFactory](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.EdgeEffectFactory)
 - [Data Binding](https://developer.android.com/topic/libraries/data-binding)
