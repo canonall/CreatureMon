@@ -14,27 +14,18 @@ import com.canonal.creaturemon.databinding.FragmentNewCreatureDetailBinding
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
 import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
 
-class NewCreatureDetailFragment : Fragment() {
+class NewCreatureDetailFragment : Fragment(R.layout.fragment_new_creature_detail) {
 
     private lateinit var binding: FragmentNewCreatureDetailBinding
     private val args: NewCreatureDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
-
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding =
-            FragmentNewCreatureDetailBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding = FragmentNewCreatureDetailBinding.bind(view)
         binding.creature = args.creature
         binding.btnHome.setOnClickListener {
             findNavController().navigate(

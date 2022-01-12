@@ -20,19 +20,12 @@ import com.canonal.creaturemon.ui.util.recyclerViewUtil.SwipeToDeleteCallback
 import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 
-class CreatureListFragment : Fragment() {
+class CreatureListFragment : Fragment(R.layout.fragment_creature_list) {
 
     private lateinit var binding: FragmentCreatureListBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCreatureListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding = FragmentCreatureListBinding.bind(view)
         val rvCreature = binding.rvCreatureList
         val creatureViewModel: CreatureViewModel by viewModels {
             CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))

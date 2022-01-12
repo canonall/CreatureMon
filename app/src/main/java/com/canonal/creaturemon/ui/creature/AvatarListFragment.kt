@@ -19,7 +19,7 @@ import com.canonal.creaturemon.ui.util.recyclerViewUtil.RecyclerViewUtils
 import com.canonal.creaturemon.ui.viewModel.AvatarViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.AvatarViewModelFactory
 
-class AvatarListFragment : Fragment() {
+class AvatarListFragment : Fragment(R.layout.fragment_avatar_list) {
 
     private lateinit var binding: FragmentAvatarListBinding
 
@@ -28,15 +28,8 @@ class AvatarListFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAvatarListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding = FragmentAvatarListBinding.bind(view)
         val rvAvatar = binding.rvAvatarList
         val avatarViewModel: AvatarViewModel by viewModels {
             AvatarViewModelFactory(AppModule.getAvatarRepository())

@@ -29,7 +29,7 @@ import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 import com.squareup.picasso.Picasso
 
-class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentAddCreatureBinding
     private lateinit var selectedIntelligenceItem: IntelligenceType
@@ -40,15 +40,9 @@ class AddCreatureFragment : Fragment(), AdapterView.OnItemSelectedListener {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAddCreatureBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding = FragmentAddCreatureBinding.bind(view)
         val ivAvatar = binding.ivAvatar
         var selectedAvatarUrl= ""
         val etCreatureName = binding.etName
