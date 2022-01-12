@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface RickAndMortyApi {
+interface AvatarService {
 
     @GET(
         "character/{id1},{id2},{id3},{id4},{id5},{id6}" +

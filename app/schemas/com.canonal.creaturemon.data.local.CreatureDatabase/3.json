@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "984452d8b2e2d202cd02232de0baa6a8",
+    "identityHash": "89a8388e851fe8e00ca9ab16312307a1",
     "entities": [
       {
         "tableName": "creature_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL DEFAULT 1, `name` TEXT NOT NULL, `creatureAttribute` TEXT NOT NULL, `hitPoint` INTEGER NOT NULL, `icon` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL DEFAULT 1, `name` TEXT NOT NULL, `creatureAttribute` TEXT NOT NULL, `hitPoint` INTEGER NOT NULL, `avatar` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -34,8 +34,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "icon",
-            "columnName": "icon",
+            "fieldPath": "avatar",
+            "columnName": "avatar",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -53,7 +53,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '984452d8b2e2d202cd02232de0baa6a8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '89a8388e851fe8e00ca9ab16312307a1')"
     ]
   }
 }

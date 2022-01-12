@@ -3,7 +3,7 @@ package com.canonal.creaturemon.di
 import android.content.Context
 import com.canonal.creaturemon.data.local.CreatureDatabase
 import com.canonal.creaturemon.data.remote.RetrofitClient
-import com.canonal.creaturemon.data.remote.RickAndMortyApi
+import com.canonal.creaturemon.data.remote.AvatarService
 import com.canonal.creaturemon.repository.AvatarRepository
 import com.canonal.creaturemon.repository.CreatureRepository
 
@@ -16,7 +16,7 @@ object AppModule {
 
     fun getAvatarRepository(): AvatarRepository{
         val retrofit = RetrofitClient.getRetrofitInstance()
-        val rickAndMortyApi = retrofit.create(RickAndMortyApi::class.java)
+        val rickAndMortyApi = retrofit.create(AvatarService::class.java)
         return AvatarRepository(rickAndMortyApi)
     }
 }

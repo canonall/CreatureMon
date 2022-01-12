@@ -5,16 +5,15 @@ class CreatureGenerator {
         fun generateCreature(
             creatureAttribute: CreatureAttribute,
             name: String,
-            icon: String
+            avatar: String
         ): Creature {
             return Creature(
                 name = name,
                 creatureAttribute = creatureAttribute,
                 hitPoint = calculateHitPoint(creatureAttribute),
-                icon = icon
+                avatar = avatar
             )
         }
-
 
         private fun calculateHitPoint(creatureAttribute: CreatureAttribute): Int {
             return creatureAttribute.intelligence * 2 +

@@ -15,5 +15,5 @@ data class Creature(
     val name: String = "No name",
     val creatureAttribute: CreatureAttribute = CreatureAttribute(0,0,0),
     val hitPoint: Int = 0,
-    val icon: String = "https://miro.medium.com/max/400/1*UL9RWkTUtJlyHW7kGm20hQ.png",
+    val avatar: String = "https://miro.medium.com/max/400/1*UL9RWkTUtJlyHW7kGm20hQ.png",
 ): Parcelable

@@ -1,9 +1,9 @@
 package com.canonal.creaturemon.repository
 
-import com.canonal.creaturemon.data.remote.RickAndMortyApi
+import com.canonal.creaturemon.data.remote.AvatarService
 
 class AvatarRepository(
-    private val rickAndMortyApi: RickAndMortyApi
+    private val avatarService: AvatarService
 ) {
     fun getCharacterList(
         id1: Int,
@@ -21,7 +21,7 @@ class AvatarRepository(
         id13: Int,
         id14: Int,
         id15: Int
-    ) = rickAndMortyApi.getCharacterList(
+    ) = avatarService.getCharacterList(
         id1,
         id2,
         id3,
