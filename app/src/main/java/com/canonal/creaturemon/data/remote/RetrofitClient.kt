@@ -1,5 +1,6 @@
 package com.canonal.creaturemon.data.remote
 
+import com.canonal.creaturemon.BuildConfig
 import com.canonal.creaturemon.ui.util.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +13,7 @@ abstract class RetrofitClient {
         fun getRetrofitInstance(): Retrofit {
             return INSTANCE ?: synchronized(this) {
                 val instance = Retrofit.Builder()
-                    .baseUrl(Constants.BASE_URL)
+                    .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 INSTANCE = instance
