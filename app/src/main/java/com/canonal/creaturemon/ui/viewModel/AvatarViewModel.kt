@@ -3,11 +3,10 @@ package com.canonal.creaturemon.ui.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.canonal.creaturemon.data.remote.response.Character
 import com.canonal.creaturemon.repository.AvatarRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
 class AvatarViewModel(
     private val avatarRepository: AvatarRepository
@@ -38,36 +37,25 @@ class AvatarViewModel(
         id14: Int,
         id15: Int
     ) {
-        val response = avatarRepository.getCharacterList(
-            id1,
-            id2,
-            id3,
-            id4,
-            id5,
-            id6,
-            id7,
-            id8,
-            id9,
-            id10,
-            id11,
-            id12,
-            id13,
-            id14,
-            id15
-        )
-        response.enqueue(object : Callback<List<Character>> {
-            override fun onResponse(
-                call: Call<List<Character>>,
-                response: Response<List<Character>>
-            ) {
-                mutableCharacterList.value = response.body()
-            }
-
-            override fun onFailure(call: Call<List<Character>>, t: Throwable) {
-                mutableErrorMessage.value = t.message
-            }
-
-        })
+        viewModelScope.launch {
+            mutableCharacterList.value =
+                avatarRepository.getCharacterList(
+                    id1,
+                    id2,
+                    id3,
+                    id4,
+                    id5,
+                    id6,
+                    id7,
+                    id8,
+                    id9,
+                    id10,
+                    id11,
+                    id12,
+                    id13,
+                    id14,
+                    id15
+                )
+        }
     }
-
 }
