@@ -2,7 +2,8 @@ package com.canonal.creaturemon.ui.creature
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -46,14 +47,17 @@ class AvatarListFragment : Fragment(R.layout.fragment_avatar_list) {
         avatarViewModel.characterList.observe(viewLifecycleOwner, {
             val avatarAdapter = AvatarAdapter(it) { avatarUrl ->
                 setNavigationResult(avatarUrl, "avatarUrl")
-                findNavController().popBackStack(R.id.addCreatureFragment,false)
+                findNavController().popBackStack(R.id.addCreatureFragment, false)
             }
             RecyclerViewUtils.initializeRecyclerView(
                 rvAvatar,
                 avatarAdapter,
                 GridLayoutManager(view.context, 3),
                 false,
-                AnimationUtil.getLayoutAnimationController(view.context, R.anim.avatar_list_layout_animation),
+                AnimationUtil.getLayoutAnimationController(
+                    view.context,
+                    R.anim.avatar_list_layout_animation
+                ),
                 BounceEdgeEffectFactory()
             )
         })
@@ -64,8 +68,8 @@ class AvatarListFragment : Fragment(R.layout.fragment_avatar_list) {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        removeMenuItem(menu,R.id.addCreatureFragment)
-        removeMenuItem(menu,R.id.creatureListFragment)
+        removeMenuItem(menu, R.id.addCreatureFragment)
+        removeMenuItem(menu, R.id.creatureListFragment)
     }
 }
 
