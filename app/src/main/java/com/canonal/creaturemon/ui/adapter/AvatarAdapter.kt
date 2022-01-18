@@ -12,6 +12,7 @@ class AvatarAdapter(
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private lateinit var binding: ItemAvatarListBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         binding = ItemAvatarListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AvatarViewHolder(binding)

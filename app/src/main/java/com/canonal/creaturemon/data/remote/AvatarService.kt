@@ -1,7 +1,6 @@
 package com.canonal.creaturemon.data.remote
 
 import com.canonal.creaturemon.data.remote.response.Character
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -12,7 +11,7 @@ interface AvatarService {
                 ",{id7},{id8},{id9},{id10},{id11},{id12},{id13}" +
                 ",{id14},{id15}"
     )
-    fun getCharacterList(
+    suspend fun getCharacterList(
         @Path("id1") id1: Int,
         @Path("id2") id2: Int,
         @Path("id3") id3: Int,
@@ -28,5 +27,5 @@ interface AvatarService {
         @Path("id13") id13: Int,
         @Path("id14") id14: Int,
         @Path("id15") id15: Int,
-        ): Call<List<Character>>
+    ): List<Character>
 }
