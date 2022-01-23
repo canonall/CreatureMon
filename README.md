@@ -47,6 +47,7 @@ MVVM(Model-View-ViewModel) is an architectural pattern which provides a key bene
   - [Type Converters](https://developer.android.com/training/data-storage/room/referencing-data)
 - [Retrofit](https://square.github.io/retrofit/)
   - REST API: [The Rick and Morty API](https://rickandmortyapi.com)
+- [ProductFlavors](https://developer.android.com/studio/build/build-variants#product-flavors)
 - [Picasso](https://square.github.io/picasso/)
 
 ## File Structure :open_file_folder:
