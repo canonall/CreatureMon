@@ -2,7 +2,7 @@ package com.canonal.creaturemon.ui.util.spinnerUtil
 
 import android.widget.AdapterView
 import android.widget.Spinner
-import com.canonal.creaturemon.ui.adapter.spinnerAdapter.BaseSpinnerAdapter
+import com.canonal.creaturemon.ui.adapter.BaseSpinnerAdapter
 
 class SpinnerUtil {
     companion object {

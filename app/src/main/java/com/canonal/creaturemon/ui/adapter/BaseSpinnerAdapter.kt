@@ -1,4 +1,4 @@
-package com.canonal.creaturemon.ui.adapter.spinnerAdapter
+package com.canonal.creaturemon.ui.adapter
 
 import android.content.Context
 import android.util.Log
@@ -9,10 +9,11 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import com.canonal.creaturemon.R
 
-abstract class BaseSpinnerAdapter<T>(
+class BaseSpinnerAdapter<T>(
     context: Context,
-    @LayoutRes private val layoutResource: Int,
+    @LayoutRes private val layoutResource: Int=  R.layout.spinner_layout,
     @IdRes private val textViewResourceId: Int = 0,
     private val values: List<T>
 ) : ArrayAdapter<T>(context, layoutResource, values) {
