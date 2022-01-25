@@ -1,12 +1,12 @@
 package com.canonal.creaturemon.ui.creature
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
@@ -17,9 +17,7 @@ import com.canonal.creaturemon.di.AppModule
 import com.canonal.creaturemon.model.attributeType.EnduranceType
 import com.canonal.creaturemon.model.attributeType.IntelligenceType
 import com.canonal.creaturemon.model.attributeType.StrengthType
-import com.canonal.creaturemon.ui.adapter.spinnerAdapter.EnduranceAdapter
-import com.canonal.creaturemon.ui.adapter.spinnerAdapter.IntelligenceAdapter
-import com.canonal.creaturemon.ui.adapter.spinnerAdapter.StrengthAdapter
+import com.canonal.creaturemon.ui.adapter.BaseSpinnerAdapter
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
@@ -29,12 +27,16 @@ import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 import com.squareup.picasso.Picasso
 
-class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterView.OnItemSelectedListener {
+class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
+    AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentAddCreatureBinding
     private lateinit var selectedIntelligenceItem: IntelligenceType
     private lateinit var selectedStrengthItem: StrengthType
     private lateinit var selectedEnduranceItem: EnduranceType
+    private val creatureViewModel: CreatureViewModel by viewModels {
+        CreatureViewModelFactory(AppModule.getCreatureRepository(requireActivity()))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -44,48 +46,15 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentAddCreatureBinding.bind(view)
         val ivAvatar = binding.ivAvatar
-        var selectedAvatarUrl= ""
+        var selectedAvatarUrl = ""
         val etCreatureName = binding.etName
         val spinnerIntelligence = binding.spinnerIntelligence
         val spinnerStrength = binding.spinnerStrength
         val spinnerEndurance = binding.spinnerEndurance
         val btnGenerate = binding.btnGenerate
         val tvTapAvatarLabel = binding.tvTapAvatarLabel
-        val creatureViewModel: CreatureViewModel by viewModels {
-            CreatureViewModelFactory(AppModule.getCreatureRepository(view.context))
-        }
 
-        val intelligenceSpinAdapter = IntelligenceAdapter(
-            view.context,
-            R.layout.spinner_layout,
-            values = creatureViewModel.getIntelligenceTypeList()
-        )
-        val strengthSpinAdapter = StrengthAdapter(
-            view.context,
-            R.layout.spinner_layout,
-            values = creatureViewModel.getStrengthTypeList()
-        )
-        val enduranceSpinAdapter = EnduranceAdapter(
-            view.context,
-            R.layout.spinner_layout,
-            values = creatureViewModel.getEnduranceTypeList()
-        )
-
-        SpinnerUtil.setSpinnerAdapter(
-            spinnerIntelligence,
-            intelligenceSpinAdapter,
-            this
-        )
-        SpinnerUtil.setSpinnerAdapter(
-            spinnerStrength,
-            strengthSpinAdapter,
-            this
-        )
-        SpinnerUtil.setSpinnerAdapter(
-            spinnerEndurance,
-            enduranceSpinAdapter,
-            this
-        )
+        initializeSpinners(view.context, spinnerIntelligence, spinnerStrength, spinnerEndurance)
 
         ivAvatar.setOnClickListener {
             findNavController().navigate(
@@ -109,7 +78,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterVie
                     binding.tvCreatureNameError.visibility = View.VISIBLE
                 }
                 selectedAvatarUrl.isEmpty() -> {
-                    binding.tvCreatureNameError.visibility= View.GONE
+                    binding.tvCreatureNameError.visibility = View.GONE
                     binding.tvCreatureAvatarError.visibility = View.VISIBLE
                 }
                 else -> {
@@ -131,7 +100,6 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterVie
                     )
                 }
             }
-
         }
     }
 
@@ -154,7 +122,42 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature), AdapterVie
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        removeMenuItem(menu,R.id.addCreatureFragment)
-        removeMenuItem(menu,R.id.creatureListFragment)
+        removeMenuItem(menu, R.id.addCreatureFragment)
+        removeMenuItem(menu, R.id.creatureListFragment)
+    }
+
+    private fun initializeSpinners(
+        context: Context,
+        spinnerIntelligence: Spinner,
+        spinnerStrength: Spinner,
+        spinnerEndurance: Spinner
+    ) {
+        val intelligenceSpinAdapter = BaseSpinnerAdapter(
+            context,
+            values = creatureViewModel.getIntelligenceTypeList()
+        )
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerIntelligence,
+            intelligenceSpinAdapter,
+            this
+        )
+        val strengthSpinAdapter = BaseSpinnerAdapter(
+            context,
+            values = creatureViewModel.getStrengthTypeList()
+        )
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerStrength,
+            strengthSpinAdapter,
+            this
+        )
+        val enduranceSpinAdapter = BaseSpinnerAdapter(
+            context,
+            values = creatureViewModel.getEnduranceTypeList()
+        )
+        SpinnerUtil.setSpinnerAdapter(
+            spinnerEndurance,
+            enduranceSpinAdapter,
+            this
+        )
     }
 }
