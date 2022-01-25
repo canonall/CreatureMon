@@ -35,13 +35,10 @@ class AvatarListFragment : Fragment(R.layout.fragment_avatar_list) {
         val avatarViewModel: AvatarViewModel by viewModels {
             AvatarViewModelFactory(AppModule.getAvatarRepository())
         }
-
-        //There is a total of 826 characters
-        //We select randomly 15 of them
+        val idList = avatarViewModel.getAvatarIdArray()
         avatarViewModel.getCharacterList(
-            1, 183, 2, 3, 5,
-            8, 20, 15, 17, 124,
-            254, 69, 99, 100, 11
+            //default separator is ","
+            idList.joinToString { it.toString() }
         )
 
         avatarViewModel.characterList.observe(viewLifecycleOwner, {
