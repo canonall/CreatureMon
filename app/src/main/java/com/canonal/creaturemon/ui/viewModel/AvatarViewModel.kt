@@ -30,7 +30,6 @@ class AvatarViewModel(
                 )
         }
     }
-
     //There is a total of 826 characters
     //We select randomly 15 of them
     fun getAvatarIdArray(): Array<Int> =

@@ -30,4 +30,5 @@
 
     <string name="empty_creature_name">*Name field can\'t be empty</string>
     <string name="empty_creature_avatar">*Please select a creature avatar</string>
+    <string name="et_name_hint">Enter at least 3 characters</string>
 </resources>

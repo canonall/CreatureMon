@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="addCreatureViewModel"
+            type="com.canonal.creaturemon.ui.viewModel.AddCreatureViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,8 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:autofillHints="name"
-            android:hint="@string/creature_name"
+            android:hint="@string/et_name_hint"
             android:inputType="text"
+            android:maxLength="15"
+            android:text="@={addCreatureViewModel.creatureName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvNameLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel" />
@@ -141,6 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/generate"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
