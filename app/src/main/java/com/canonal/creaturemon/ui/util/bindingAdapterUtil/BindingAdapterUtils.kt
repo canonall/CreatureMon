@@ -6,10 +6,10 @@ import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("setImageWithUrl")
-fun setImageWithPicasso(imageView: ImageView, imageUrl: String) {
+fun ImageView.setImageWithPicasso(imageUrl: String) {
     Picasso.get().isLoggingEnabled = true
     Picasso.get().setIndicatorsEnabled(true)
-    Picasso.get().load(imageUrl).into(imageView)
+    Picasso.get().load(imageUrl).into(this)
 }
 
 @BindingAdapter("generateButtonVisibility")
