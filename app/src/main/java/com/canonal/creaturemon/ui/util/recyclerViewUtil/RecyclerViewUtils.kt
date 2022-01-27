@@ -2,13 +2,12 @@ package com.canonal.creaturemon.ui.util.recyclerViewUtil
 
 import android.view.animation.LayoutAnimationController
 import androidx.recyclerview.widget.RecyclerView
-import com.canonal.creaturemon.ui.adapter.BaseViewHolder
 
 class RecyclerViewUtils {
     companion object {
-        fun initializeRecyclerView(
+        fun <T : RecyclerView.ViewHolder?> initializeRecyclerView(
             recyclerView: RecyclerView,
-            adapter: RecyclerView.Adapter<BaseViewHolder>,
+            adapter: RecyclerView.Adapter<T>,
             layoutManager: RecyclerView.LayoutManager,
             hasFixedSize: Boolean,
             layoutAnimationController: LayoutAnimationController,

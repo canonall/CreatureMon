@@ -1,7 +1,6 @@
 package com.canonal.creaturemon.data.remote
 
 import com.canonal.creaturemon.BuildConfig
-import com.canonal.creaturemon.ui.util.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

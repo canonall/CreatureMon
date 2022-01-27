@@ -55,6 +55,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
         val spinnerEndurance = binding.spinnerEndurance
         val btnGenerate = binding.btnGenerate
         val tvTapAvatarLabel = binding.tvTapAvatarLabel
+        val tvCreatureAvatarError = binding.tvCreatureAvatarError
 
         initializeSpinners(view.context, spinnerIntelligence, spinnerStrength, spinnerEndurance)
 
@@ -83,14 +84,11 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
 
         btnGenerate.setOnClickListener {
             when {
-                etCreatureName.text.toString().isEmpty() -> {
-                    binding.tvCreatureNameError.visibility = View.VISIBLE
-                }
                 selectedAvatarUrl.isEmpty() -> {
-                    binding.tvCreatureNameError.visibility = View.GONE
-                    binding.tvCreatureAvatarError.visibility = View.VISIBLE
+                    tvCreatureAvatarError.visibility = View.VISIBLE
                 }
                 else -> {
+                    tvCreatureAvatarError.visibility = View.GONE
                     val newCreature = addCreatureViewModel.getNewCreature(
                         etCreatureName.text.toString(),
                         selectedIntelligenceItem,
