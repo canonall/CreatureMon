@@ -23,7 +23,7 @@ import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
 import com.canonal.creaturemon.ui.util.navigationUtil.removeMenuItem
 import com.canonal.creaturemon.ui.util.spinnerUtil.SpinnerUtil
-import com.canonal.creaturemon.ui.viewModel.CreatureViewModel
+import com.canonal.creaturemon.ui.viewModel.AddCreatureViewModel
 import com.canonal.creaturemon.ui.viewModelFactory.CreatureViewModelFactory
 import com.squareup.picasso.Picasso
 
@@ -34,7 +34,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
     private lateinit var selectedIntelligenceItem: IntelligenceType
     private lateinit var selectedStrengthItem: StrengthType
     private lateinit var selectedEnduranceItem: EnduranceType
-    private val creatureViewModel: CreatureViewModel by viewModels {
+    private val addCreatureViewModel: AddCreatureViewModel by viewModels {
         CreatureViewModelFactory(AppModule.getCreatureRepository(requireActivity()))
     }
 
@@ -45,6 +45,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentAddCreatureBinding.bind(view)
+        binding.addCreatureViewModel = addCreatureViewModel
         val ivAvatar = binding.ivAvatar
         var selectedAvatarUrl = ""
         val etCreatureName = binding.etName
@@ -55,6 +56,10 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
         val tvTapAvatarLabel = binding.tvTapAvatarLabel
 
         initializeSpinners(view.context, spinnerIntelligence, spinnerStrength, spinnerEndurance)
+
+        addCreatureViewModel.generateButtonVisibility.observe(viewLifecycleOwner, {
+            btnGenerate.visibility = it
+        })
 
         ivAvatar.setOnClickListener {
             findNavController().navigate(
@@ -82,7 +87,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
                     binding.tvCreatureAvatarError.visibility = View.VISIBLE
                 }
                 else -> {
-                    val newCreature = creatureViewModel.getNewCreature(
+                    val newCreature = addCreatureViewModel.getNewCreature(
                         etCreatureName.text.toString(),
                         selectedIntelligenceItem,
                         selectedStrengthItem,
@@ -93,7 +98,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
                         AddCreatureFragmentDirections.actionAddCreatureFragmentToNewCreatureDetailFragment(
                             newCreature
                         )
-                    creatureViewModel.insertCreature(newCreature)
+                    addCreatureViewModel.insertCreature(newCreature)
                     findNavController().navigate(
                         action,
                         NavOptions.Builder().popUpToFragment(R.id.creatureListFragment, false)
@@ -134,7 +139,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
     ) {
         val intelligenceSpinAdapter = BaseSpinnerAdapter(
             context,
-            values = creatureViewModel.getIntelligenceTypeList()
+            values = addCreatureViewModel.getIntelligenceTypeList()
         )
         SpinnerUtil.setSpinnerAdapter(
             spinnerIntelligence,
@@ -143,7 +148,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
         )
         val strengthSpinAdapter = BaseSpinnerAdapter(
             context,
-            values = creatureViewModel.getStrengthTypeList()
+            values = addCreatureViewModel.getStrengthTypeList()
         )
         SpinnerUtil.setSpinnerAdapter(
             spinnerStrength,
@@ -152,7 +157,7 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
         )
         val enduranceSpinAdapter = BaseSpinnerAdapter(
             context,
-            values = creatureViewModel.getEnduranceTypeList()
+            values = addCreatureViewModel.getEnduranceTypeList()
         )
         SpinnerUtil.setSpinnerAdapter(
             spinnerEndurance,
