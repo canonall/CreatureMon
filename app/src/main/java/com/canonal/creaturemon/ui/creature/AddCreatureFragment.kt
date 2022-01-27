@@ -18,6 +18,7 @@ import com.canonal.creaturemon.model.attributeType.EnduranceType
 import com.canonal.creaturemon.model.attributeType.IntelligenceType
 import com.canonal.creaturemon.model.attributeType.StrengthType
 import com.canonal.creaturemon.ui.adapter.BaseSpinnerAdapter
+import com.canonal.creaturemon.ui.creature.addCreatureViewState.GenerateButtonViewState
 import com.canonal.creaturemon.ui.util.animationUtil.AnimationUtil
 import com.canonal.creaturemon.ui.util.navigationUtil.getNavigationResult
 import com.canonal.creaturemon.ui.util.navigationUtil.popUpToFragment
@@ -57,8 +58,11 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
 
         initializeSpinners(view.context, spinnerIntelligence, spinnerStrength, spinnerEndurance)
 
+        binding.generateButtonViewState = GenerateButtonViewState.getInitialVisibility()
         addCreatureViewModel.generateButtonVisibility.observe(viewLifecycleOwner, {
-            btnGenerate.visibility = it
+            binding.generateButtonViewState = it
+            //https://developer.android.com/reference/android/databinding/ViewDataBinding#executependingbindings
+            binding.executePendingBindings()
         })
 
         ivAvatar.setOnClickListener {
