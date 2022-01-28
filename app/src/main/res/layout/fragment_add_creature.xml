@@ -130,7 +130,8 @@
             android:text="@string/empty_creature_avatar"
             android:textColor="@color/red"
             android:textSize="18sp"
-            android:visibility="gone"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/btnGenerate"
             app:layout_constraintTop_toBottomOf="@+id/tvEnduranceLabel" />
 
         <Button

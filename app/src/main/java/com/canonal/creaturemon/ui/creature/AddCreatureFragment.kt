@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -86,6 +87,10 @@ class AddCreatureFragment : Fragment(R.layout.fragment_add_creature),
             when {
                 selectedAvatarUrl.isEmpty() -> {
                     tvCreatureAvatarError.visibility = View.VISIBLE
+                    tvCreatureAvatarError.animation = AnimationUtils.loadAnimation(
+                        requireContext(),
+                        R.anim.slide_in_left
+                    )
                 }
                 else -> {
                     tvCreatureAvatarError.visibility = View.GONE
