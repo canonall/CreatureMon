@@ -12,19 +12,19 @@ class AvatarViewModel(
     private val avatarRepository: AvatarRepository
 ) : ViewModel() {
 
-    private val mutableErrorMessage: MutableLiveData<String> = MutableLiveData()
+    private val _errorMessage: MutableLiveData<String> = MutableLiveData()
     val errorMessage: LiveData<String>
-        get() = mutableErrorMessage
+        get() = _errorMessage
 
-    private val mutableCharacterList: MutableLiveData<List<Character>> = MutableLiveData()
+    private val _characterList: MutableLiveData<List<Character>> = MutableLiveData()
     val characterList: LiveData<List<Character>>
-        get() = mutableCharacterList
+        get() = _characterList
 
     fun getCharacterList(
         idList: String
     ) {
         viewModelScope.launch {
-            mutableCharacterList.value =
+            _characterList.value =
                 avatarRepository.getCharacterList(
                     idList
                 )
