@@ -14,12 +14,11 @@ import com.canonal.creaturemon.repository.CreatureRepository
 import com.canonal.creaturemon.ui.creature.addCreatureViewState.GenerateButtonViewState
 import kotlinx.coroutines.launch
 
-private const val minCreatureNameLength = 3
-
 class AddCreatureViewModel(
     private val creatureRepository: CreatureRepository
 ) : ViewModel() {
 
+    // Two-way databinding, exposing MutableLiveData
     val creatureName = MutableLiveData<String>()
     val generateButtonVisibility = Transformations.map(creatureName) {
         GenerateButtonViewState(it.length >= minCreatureNameLength)
@@ -65,4 +64,8 @@ class AddCreatureViewModel(
             creatureName,
             selectedAvatarUrl
         )
+
+    companion object {
+        private const val minCreatureNameLength = 3
+    }
 }
