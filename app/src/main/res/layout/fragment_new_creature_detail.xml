@@ -35,6 +35,7 @@
             android:text="@{creature.name}"
             android:textColor="@color/black"
             android:textSize="24sp"
+            android:fontFamily="@font/intro_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
@@ -42,20 +43,14 @@
 
         <TextView
             android:id="@+id/tvIntelligenceLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/intelligence"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNameLabel" />
 
         <TextView
             android:id="@+id/tvIntelligencePoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="end"
+            style="@style/newCreatureDetailTextViewValue"
             android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvIntelligenceLabel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,20 +59,14 @@
 
         <TextView
             android:id="@+id/tvStrengthLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/strength"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIntelligenceLabel" />
 
         <TextView
             android:id="@+id/tvStrengthPoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="end"
+            style="@style/newCreatureDetailTextViewValue"
             android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvStrengthLabel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,20 +75,14 @@
 
         <TextView
             android:id="@+id/tvEnduranceLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/endurance"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStrengthLabel" />
 
         <TextView
             android:id="@+id/tvEndurancePoint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="end"
+            style="@style/newCreatureDetailTextViewValue"
             android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvEnduranceLabel"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +97,7 @@
             android:text="@string/hit_points_upper"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/intro_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEnduranceLabel"
@@ -126,6 +110,7 @@
             android:text="@{Integer.toString(creature.hitPoint)}"
             android:textSize="68sp"
             android:textStyle="bold"
+            android:fontFamily="@font/intro_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHitPointsLabel"
@@ -136,6 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/home"
+            android:fontFamily="@font/intro_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

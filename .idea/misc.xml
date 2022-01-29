@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/font/mont_black_regular.xml" value="0.2682051282051282" />
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/activity_main.xml" value="0.12817028985507245" />
         <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/fragment_add_creature.xml" value="0.25" />
         <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/fragment_avatar_list.xml" value="0.1322463768115942" />
-        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/fragment_new_creature_detail.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/fragment_creature_list.xml" value="0.12817028985507245" />
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/fragment_new_creature_detail.xml" value="0.335" />
         <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/item_avatar_list.xml" value="0.1322463768115942" />
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/item_creature_list.xml" value="0.335" />
+        <entry key="..\:/Users/Huawei/Desktop/Android/Kekod/CretureMon/app/src/main/res/layout/spinner_layout.xml" value="0.12817028985507245" />
         <entry key="..\:/Users/belkis.onal/Desktop/Kekod/AfterGermany/app/src/main/res/drawable/ic_delete.xml" value="0.2712962962962963" />
         <entry key="..\:/Users/belkis.onal/Desktop/Kekod/AfterGermany/app/src/main/res/layout/activity_main.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/belkis.onal/Desktop/Kekod/AfterGermany/app/src/main/res/layout/fragment_add_creature.xml" value="0.26510416666666664" />

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="start"
+    android:fontFamily="@font/intro_regular"
     android:padding="5dp"
     android:textAlignment="gravity"
     android:textSize="18sp" />
