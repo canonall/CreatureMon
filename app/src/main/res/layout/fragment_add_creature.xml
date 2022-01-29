@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tap_to_set_avatar"
             android:textSize="24sp"
+            android:fontFamily="@font/intro_regular"
             app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
             app:layout_constraintEnd_toEndOf="@+id/ivAvatar"
             app:layout_constraintStart_toStartOf="@+id/ivAvatar"
@@ -43,11 +44,8 @@
 
         <TextView
             android:id="@+id/tvNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:text="@string/name"
-            android:textSize="18sp"
+            style="@style/attributeTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
 
@@ -56,6 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:fontFamily="@font/intro_regular"
             android:autofillHints="name"
             android:hint="@string/et_name_hint"
             android:inputType="text"
@@ -67,11 +66,8 @@
 
         <TextView
             android:id="@+id/tvIntelligenceLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/intelligence"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNameLabel" />
 
@@ -86,11 +82,8 @@
 
         <TextView
             android:id="@+id/tvStrengthLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/strength"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIntelligenceLabel" />
 
@@ -105,11 +98,8 @@
 
         <TextView
             android:id="@+id/tvEnduranceLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/endurance"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStrengthLabel" />
 
@@ -126,10 +116,9 @@
             android:id="@+id/tvCreatureAvatarError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            style="@style/attributeTextView"
             android:text="@string/empty_creature_avatar"
             android:textColor="@color/red"
-            android:textSize="18sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/btnGenerate"
             app:layout_constraintTop_toBottomOf="@+id/tvEnduranceLabel" />
@@ -140,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:fontFamily="@font/intro_regular"
             android:text="@string/generate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -42,6 +42,7 @@
                 android:text="@{creature.name}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:fontFamily="@font/intro_regular"
                 app:layout_constraintStart_toEndOf="@id/ivItemAvatar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="creature name" />
@@ -55,9 +56,7 @@
 
             <TextView
                 android:id="@+id/tvIntelligencePoint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
+                style="@style/ItemCreatureListTextViewValue"
                 android:text="@{Integer.toString(creature.creatureAttribute.intelligence)}"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tvIntelligenceLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,9 +72,7 @@
 
             <TextView
                 android:id="@+id/tvStrengthPoint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
+                style="@style/ItemCreatureListTextViewValue"
                 android:text="@{Integer.toString(creature.creatureAttribute.strength)}"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tvStrengthLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,9 +88,7 @@
 
             <TextView
                 android:id="@+id/tvEndurancePoint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
+                style="@style/ItemCreatureListTextViewValue"
                 android:text="@{Integer.toString(creature.creatureAttribute.endurance)}"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tvEnduranceLabel"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,12 +104,11 @@
 
             <TextView
                 android:id="@+id/tvHitPoints"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
+                style="@style/ItemCreatureListTextViewValue"
                 android:text="@{Integer.toString(creature.hitPoint)}"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tvHitPointsLabel"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/tvIntelligenceLabel"
                 tools:text="20" />
         </androidx.constraintlayout.widget.ConstraintLayout>
