@@ -4,7 +4,7 @@ import com.canonal.creaturemon.data.remote.response.Character
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface AvatarService {
+interface AvatarApi {
 
     @GET("character/{idList}")
     suspend fun getCharacterList(
