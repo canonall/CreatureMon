@@ -5,7 +5,7 @@ import com.canonal.creaturemon.data.remote.response.Character
 import com.canonal.creaturemon.databinding.ItemAvatarListBinding
 
 class AvatarViewHolder(
-    val binding: ItemAvatarListBinding
+    private val binding: ItemAvatarListBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(character: Character, onAvatarClick: (String) -> Unit) {
         binding.avatar = character

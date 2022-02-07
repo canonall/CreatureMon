@@ -5,7 +5,7 @@ import com.canonal.creaturemon.databinding.ItemCreatureListBinding
 import com.canonal.creaturemon.model.Creature
 
 class CreatureViewHolder(
-    val binding: ItemCreatureListBinding
+    private val binding: ItemCreatureListBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(creature: Creature) {
         binding.creature = creature
